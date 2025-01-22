@@ -35,16 +35,28 @@ void getmouse(int* button, int* x, int* y);
 float freq[7] = { 130.81, 146.83, 164.81, 174.61,196, 220, 246.94 };
 int n = 0, a = 4, backcolor = 2, exitcode = 1;
 
+
+void moveCursor(int x, int y) {
+	std::cout << "\033[" << y << ";" << x << "H";
+}
+void setTextColour(int colour) {
+	std::cout << "\033[" << colour << "m";
+}
+void resetText() {
+	std::cout << "\033[0m";
+}
+
 void showbar(int t)
 {
 	if (t > 65) t = 65;
 	if (t < 1) t = 1;
-	textcolor(15);
+	setTextColour(37);
 	for (int q = 0;q <= t;t++)
 	{
-		gotoxy(3 + q, 4);
-		cprintf("Û");
+		moveCursor(3 + q, 4);
+		std::cout << "";       /// add block character
 	}
+	resetText();
 }
 
 
